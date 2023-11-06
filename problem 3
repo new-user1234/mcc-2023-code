@@ -1,0 +1,39 @@
+
+import numpy as np
+# using given data in task 2 #
+given = '''
+8 3
+7 5 4 12
+10 9 4 1
+4 8 6 16
+5 4 7 8
+11 7 7 10
+6 4 13 5
+2 7 6 12
+13 5 6 10
+'''
+
+lost= given.split()
+data= [ int(num) for num in lost]
+data.pop(0)
+k= data[0]
+data.pop(0)
+data_2d = np.array(data)
+data_2d = data_2d.reshape(-1, 4)
+data_2d= data_2d.tolist()
+
+lists_of_abcd_sum=[]
+for sublist in data_2d:
+  lists_of_abcd_sum.append(sum(sublist))
+
+abcd_ab_list=[]
+for i in range(len(lists_of_abcd_sum)):
+  adjusted_d2d = data_2d.copy()
+  adjusted_d2d.pop(i)
+  list_ab_sum=[]
+  for sublist in adjusted_d2d:
+    list_ab_sum.append(sum(sublist[:2]))
+  list_ab_sum.sort(reverse=True)
+  abcd_ab_list.append(lists_of_abcd_sum[i] +  sum(list_ab_sum[:(k-1)]))
+
+print(max(abcd_ab_list))
