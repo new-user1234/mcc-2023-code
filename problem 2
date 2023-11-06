@@ -1,0 +1,44 @@
+given = '''
+
+
+50 372 12101
+338 348 163 239 387 281 13 162 46 248 246 222 290 164 451 471 454 30 395 223 101 121 487 348 328 371 166 402 466 31 184 187 317 77 367 449 462 286 313 216 114 392 98 128 20 67 107 441 386 404
+
+
+
+'''
+
+
+maketolist = given.split()
+lst = [int(num) for num in maketolist]
+
+n = lst[0]
+lst.pop(0)
+A = int(lst[0])
+B = lst[1]
+
+lst.pop(0)
+lst.pop(0)
+print(lst)
+
+lst.sort(reverse=True)
+num_killed = 0
+
+while A < B:
+    added_power = False
+    for i in range(len(lst)):
+        if A > lst[i]:
+            A += lst[i]
+            num_killed += 1
+            lst.pop(i)
+            
+            added_power = True
+            break
+
+    if not added_power:
+        break
+
+if A >= B:
+    print(num_killed)
+else:
+    print(-1)
