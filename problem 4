@@ -1,0 +1,57 @@
+given = ''' 100 20
+71 74 290 56 2 212 288 208 287 299 137 256 195 44 66 106 10 11 52 99 87 243 250 179 200 19 243 154 92 44 225 292 141 109 181 163 195 2 6 56 57 11 206 272 202 277 32 48 245 129 44 59 252 215 223 164 268 241 232 168 110 142 14 292 235 157 86 263 208 195 210 80 238 251 125 130 17 280 103 194
+'''
+lost=given.split()
+data= [int(num) for num in lost]
+data.pop(0)
+target_sum= data[0]
+data.pop(0)
+
+# Remove duplicates
+data = list(set(data))
+data.sort()
+my_list=data
+print(my_list)
+print(len(my_list))
+# Calculate the gaps between elements
+gaps = [my_list[i + 1] - my_list[i] for i in range(len(my_list) - 1)]
+inserts= [ g-1 for g in gaps]
+print(inserts)
+print(len(inserts))
+elements = inserts
+
+def find_elements_to_sum(arr, target_sum):
+    num_elements = 0
+    cumulative_sum = 0
+
+    for i, value in enumerate(arr):
+        cumulative_sum += value
+        num_elements += 1
+
+        if cumulative_sum >= target_sum:
+            return num_elements
+    return None
+
+results = []
+
+for i, _ in enumerate(elements):
+    num_elements_needed = find_elements_to_sum(elements[i:], target_sum)
+    if num_elements_needed:
+        start = i
+        end = i + num_elements_needed
+        summed_elements = elements[start:end]
+        total_sum = sum(summed_elements)
+
+        if total_sum > target_sum:
+            result = len(summed_elements) + target_sum
+        elif total_sum == target_sum:
+            result = len(summed_elements) + target_sum + 1
+        else:
+            result = None 
+        if result is not None:
+            results.append(result)
+
+
+
+answer= max(results)
+print('Ans: ' + str(answer))
