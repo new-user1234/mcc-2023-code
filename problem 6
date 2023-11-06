@@ -1,0 +1,36 @@
+given ='''18 2
+167 39 437 804 803 151 811 959 749 807 94 410 52 782 422 246 133 182 '''
+
+lost=given.split()
+lst= [int(num) for num in lost]
+n= lst[0]
+lst.pop(0)
+k = lst[0]
+lst.pop(0)
+# Prints sums of all subsets 
+def subsetSums(nums,n):
+	
+	s = [0]
+	for i in range(n):
+		v = len(s)
+		for t in range(v):
+			s.append((s[t] + nums[i]%998244353)%998244353) # add this element with previous subsets
+
+	return s
+
+subset_sums = subsetSums(lst, n)
+
+# Save the list to a text file
+with open('subset_sums.txt', 'w') as file:
+    for sum_value in subset_sums:
+        file.write(str(sum_value) + '\n')
+        
+# Read the file and convert to a list 
+with open('subset_sums.txt', 'r') as file:
+    
+    subset_sums = [int(line) for line in file]
+
+# Raise the entire list to the power of k
+subset_sums_to_power_k = [(sum_value %998244353) ** k for sum_value in subset_sums]
+
+print(sum(subset_sums_to_power_k)%998244353 )
