@@ -1,0 +1,338 @@
+# task 2 #
+def separate_list(lst):
+    list1 = []
+    list2 = []
+
+    for i, element in enumerate(lst):
+        if i % 2 == 0:  # Check if the index is even
+            list1.append(element)
+        else:
+            list2.append(element)
+
+    return list1, list2
+lost=given.split()
+messed_up_list = [int(num) for num in lost]
+result_list1, result_list2 = separate_list(messed_up_list)
+
+# Calculate and print the sum of elements in each list
+sum_list2 = sum(result_list2)
+
+print("List 2:", result_list2)
+print("Sum of elements in List 2:", sum_list2)
+
+max_list1 = max(result_list1)
+print("Maximum number in List 1:", max_list1)
+area= sum_list2 * max_list1
+print(area)
+
+
+#############################################################################################
+# task 3 #
+
+## problem 5 task 3 : 135 , 2 ##
+given ='''
+43 812
+910 230
+802 54
+182 438
+466 919
+788 129
+78 710
+710 308
+129 203
+169 247
+409 937
+63 678
+21 162
+741 760
+615 327
+549 7
+917 158
+605 36
+6 438
+625 786
+284 292
+620 721
+98 146
+997 133
+729 31
+659 75
+266 390
+62 229
+708 123
+363 401
+159 312
+826 548
+261 925
+162 240
+672 552
+289 925
+438 48
+148 457
+773 262
+594 727
+164 433
+351 623
+297 49
+894 742
+30 708
+328 689
+453 224
+948 448
+665 374
+117 764
+651 608
+766 756
+304 182
+633 681
+269 942
+859 294
+859 729
+66 208
+465 754
+293 826
+556 127
+460 377
+131 982
+389 407
+596 541
+807 724
+403 248
+572 409
+559 107
+378 708
+539 979
+479 270
+574 47
+119 27
+612 1000
+753 167
+743 574
+728 749
+125 108
+695 199
+320 547
+988 897
+701 755
+855 901
+831 96
+897 899
+964 121
+863 280
+582 556
+163 32
+572 827
+543 912
+243 642
+453 721
+402 19
+730 436
+128 660
+766 631
+168 651
+237 372
+717 444
+147 204
+113 119
+128 634
+348 546
+69 193
+636 984
+563 169
+913 637
+314 675
+263 126
+12 797
+612 417
+226 499
+933 646
+800 550
+961 221
+106 568
+538 29
+121 84
+397 809
+934 227
+252 820
+693 698
+172 778
+747 210
+761 713
+550 76
+880 97
+198 343
+325 417
+255 821
+911 828
+1 89
+955 556 '''
+lost=given.split()
+data = [int(num) for num in lost]
+heights = data[::2]
+widths = data[1::2]
+hr= heights[::-1]
+wr=widths[::-1]
+lists_of_sum =[]
+
+for k in range(135):
+    area1=max(heights[:(k+1)]) * sum(widths[:(k+1)])
+    area2= max(heights[(-134+k):]) * sum(widths[(-134+k):])
+    lists_of_sum.append(area1 + area2)
+print(lists_of_sum)
+# prints final answer (that is the minimum sum of areas of 2 blue rectangles)##
+print('answer is :')
+print( min(lists_of_sum))
+
+###check first element correct or not ###
+test0sum=sum(widths[1:])
+total=test0sum * max(heights) + 34916
+print('checking the first element:' +str(total))
+
+
+#############################################################################################
+# task 4 #
+given = '''
+492 210
+555 740
+71 829
+497 91
+267 386
+284 392
+617 677
+857 75
+89 417
+379 253
+94 839
+538 395
+959 654
+568 139
+461 845
+723 180
+201 754
+824 423
+848 693
+187 466
+397 195
+409 893
+183 867
+707 742
+447 15
+576 543
+829 323
+672 797
+647 807
+909 512
+980 782
+743 161
+250 559
+674 368
+834 93
+627 55
+317 841
+947 704
+359 462
+342 636
+359 816
+817 943
+978 684
+845 471
+148 293
+528 764
+237 57
+548 357
+774 935
+39 731
+60 608
+267 813
+827 701
+915 674
+762 886
+361 905
+449 593
+462 622
+183 172
+203 184
+658 831
+343 893
+327 5
+881 865
+347 292
+831 244
+537 688
+810 219
+110 106
+286 777
+864 25
+401 601
+193 53
+470 185
+462 478
+422 28
+857 869
+524 843
+164 788
+793 412
+391 892
+823 82
+819 855
+214 370
+652 178
+803 165
+819 741
+504 875
+112 541
+126 108
+248 312
+56 462
+292 579
+913 462
+174 931
+141 752
+34 844
+172 508
+126 705
+617 471
+932 415
+669 440
+734 548
+781 888
+476 74
+910 616
+163 273
+992 665
+640 972
+182 61
+155 461
+658 326
+249 619
+905 451
+821 130
+440 492
+850 602
+390 99
+261 564
+975 459
+625 218
+25 313
+910 278
+383 888
+166 546
+252 153
+52 961
+176 635
+810 765
+824 495
+768 334
+252 623
+124 988
+393 518
+809 476
+'''
+
+lost=given.split()
+messed_up_list = [int(num) for num in lost]
+sublists, multiplied_sums, total_sum = separate_and_multiply(messed_up_list)
+print(len(multiplied_sums))
+print("Sublists with 2 columns:", sublists)
+print("Multiplication results for each sublist:", multiplied_sums)
+print("Sum of all multiplied numbers:", total_sum)
